@@ -1,0 +1,29 @@
+.sidebar{
+    flex: 0.21;
+    max-width: 300px;
+    background-color: #F6F8FC;
+    padding-right: 15px;
+}
+
+.sidebar__compose {
+    margin-top: 15px !important;
+    margin-left: 10px !important;
+    margin-bottom: 15px !important;
+    background-color: #C2E7FD !important;
+    text-transform: inherit !important;
+    color: black !important;
+    border-radius: 20px !important;
+    padding: 8px 25px !important;
+    font-weight: 500;
+}
+
+.sidebar__labels{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;  
+}
+
+.sidebar__labels > h4 {
+    font-weight: 500;
+}

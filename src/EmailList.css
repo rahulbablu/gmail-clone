@@ -1,0 +1,41 @@
+.emailList{
+    flex: 1;
+    overflow: scroll;
+    background-color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 100vh;
+    margin-right: 15px;
+}
+
+.emailList__settings {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 15px;
+    background-color: white;
+}
+
+.emailList__sections {
+    position: sticky;
+    top: 0;
+    display: flex;
+    z-index: 9999;
+    background-color: white;
+}
+
+.emailList__list {
+    padding-bottom: 20%;
+}
+
+/* Hides scroll bar in chrome */
+.emailList::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hides scrollbar in IE, Edge & Firefox */
+.emailList {
+    -ms-overflow-style: none; /*IE & Edge */
+    scrollbar-width: none; /* Firefox*/
+}
