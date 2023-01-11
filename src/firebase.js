@@ -1,21 +1,22 @@
-import firebase from 'firebase';
-
+import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDhBDSDnSL1zWDGRRe-XIVz0iTotSyD6Xg",
-    authDomain: "clone-f03ba.firebaseapp.com",
-    projectId: "clone-f03ba",
-    storageBucket: "clone-f03ba.appspot.com",
-    messagingSenderId: "948449463026",
-    appId: "1:948449463026:web:f8f7e2c294fdb8ffd11e6b"
-  };
+  apiKey: "AIzaSyCTAvSHZMhJS0nVS6m3376foRSQHh2FTus",
+  authDomain: "clone-8f8ef.firebaseapp.com",
+  projectId: "clone-8f8ef",
+  storageBucket: "clone-8f8ef.appspot.com",
+  messagingSenderId: "194371211581",
+  appId: "1:194371211581:web:a218c384c790a37d15b554"
+};
 
-  const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 
-  const db = firebaseApp.firestore();
+const db = getFirestore(firebaseApp);
 
-  const auth = firebase.auth();
+const auth = getAuth(firebaseApp);
 
-  const provider = new firebase.auth.GoogleAuthProvider();
+const provider = new GoogleAuthProvider();
 
-  export { db, auth, provider };
+export { db, auth, provider };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
 import { Button } from "@mui/material";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
@@ -14,27 +14,35 @@ import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDown
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 
 import { IconButton } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openSendMessage } from "./features/mailSlice";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
 
   return (
     <div className="sidebar">
-      <Button className="sidebar__compose" startIcon={<CreateOutlinedIcon />} onClick={() => dispatch(openSendMessage())} >
+      <Button
+        className="sidebar__compose"
+        startIcon={<CreateOutlinedIcon />}
+        onClick={() => dispatch(openSendMessage())}
+      >
         Compose
       </Button>
-      <SidebarOption
-        Icon={InboxIcon}
-        title="Inbox"
-        number={38}
-        selected={true}
-      />
+      <Link to="/">
+        <SidebarOption Icon={InboxIcon} title="Inbox"  selected={true}/>
+      </Link>
       <SidebarOption Icon={StarBorderIcon} title="Starred" number={12} />
       <SidebarOption Icon={AccessTimeIcon} title="Snoozed" number={4} />
       <SidebarOption Icon={LabelImportantIcon} title="Important" number={16} />
-      <SidebarOption Icon={SendOutlinedIcon} title="Sent" number={346} />
+      <Link to="/sent">
+        <SidebarOption
+          Icon={SendOutlinedIcon}
+          title="Sent"
+          selected={true}
+        />
+      </Link>
       <SidebarOption
         Icon={InsertDriveFileOutlinedIcon}
         title="Drafts"

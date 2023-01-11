@@ -24,8 +24,6 @@ import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import TurnLeftOutlinedIcon from "@mui/icons-material/TurnLeftOutlined";
 import { useSelector } from "react-redux";
 import { selectOpenMail } from "./features/mailSlice";
-import { db } from "./firebase";
-import { selectUser } from "./features/userSlice";
 
 const Mail = () => {
   const navigate = useNavigate();
@@ -39,55 +37,55 @@ const Mail = () => {
   const selectedMail = useSelector(selectOpenMail);
 
   return (
-    <div className="mail">
-      <div className="mail__tools">
-        <div className="mail__toolsLeft">
-          <IconButton>
-            <ArrowBackIcon onClick={() => navigate("/")} />
-          </IconButton>
-          <div className="mail__toolsLeftOne">
-            {tools(MoveToInboxIcon)}
-            {tools(ReportGmailerrorredIcon)}
-            {tools(DeleteOutlineIcon)}
+      <div className="mail">
+        <div className="mail__tools">
+          <div className="mail__toolsLeft">
+            <IconButton>
+              <ArrowBackIcon onClick={() => navigate("/")} />
+            </IconButton>
+            <div className="mail__toolsLeftOne">
+              {tools(MoveToInboxIcon)}
+              {tools(ReportGmailerrorredIcon)}
+              {tools(DeleteOutlineIcon)}
+            </div>
+            <div className="mail__toolsLeftTwo">
+              {tools(MailOutlineIcon)}
+              {tools(AccessTimeIcon)}
+              {tools(AddTaskIcon)}
+            </div>
+            <div className="mail__toolsLeftThree">
+              {tools(DriveFolderUploadIcon)}
+              {tools(LabelOutlinedIcon)}
+              {tools(MoreVertOutlinedIcon)}
+            </div>
           </div>
-          <div className="mail__toolsLeftTwo">
-            {tools(MailOutlineIcon)}
-            {tools(AccessTimeIcon)}
-            {tools(AddTaskIcon)}
-          </div>
-          <div className="mail__toolsLeftThree">
-            {tools(DriveFolderUploadIcon)}
-            {tools(LabelOutlinedIcon)}
-            {tools(MoreVertOutlinedIcon)}
+          <div className="mail_toolsRight">
+            {tools(UnfoldMoreOutlinedIcon)}
+            {tools(LocalPrintshopOutlinedIcon)}
+            {tools(OpenInNewOutlinedIcon)}
+            {tools(KeyboardArrowLeftOutlinedIcon)}
+            {tools(ChevronRightOutlinedIcon)}
           </div>
         </div>
-        <div className="mail_toolsRight">
-          {tools(UnfoldMoreOutlinedIcon)}
-          {tools(LocalPrintshopOutlinedIcon)}
-          {tools(OpenInNewOutlinedIcon)}
-          {tools(KeyboardArrowLeftOutlinedIcon)}
-          {tools(ChevronRightOutlinedIcon)}
+        <div className="mail__body">
+          <div className="mail__bodyHeader">
+            <div className="mail__bodyHeaderLeft">
+              <h2>{selectedMail?.subject}</h2>
+              <LabelImportantIcon className="mail__important" />
+              <p>{selectedMail?.title}</p>
+            </div>
+            <div className="mail__bodyHeaderRight">
+              <p className="mail__time">{selectedMail?.time}</p>
+              {tools(StarBorderOutlinedIcon)}
+              {tools(TurnLeftOutlinedIcon)}
+              {tools(MoreVertOutlinedIcon)}
+            </div>
+          </div>
+          <div className="mail__message">
+            <p>{selectedMail?.description}</p>
+          </div>
         </div>
       </div>
-      <div className="mail__body">
-        <div className="mail__bodyHeader">
-          <div className="mail__bodyHeaderLeft">
-            <h2>{selectedMail?.subject}</h2>
-            <LabelImportantIcon className="mail__important" />
-            <p>{selectedMail?.title}</p>
-          </div>
-          <div className="mail__bodyHeaderRight">
-            <p className="mail__time">{selectedMail?.time}</p>
-            {tools(StarBorderOutlinedIcon)}
-            {tools(TurnLeftOutlinedIcon)}
-            {tools(MoreVertOutlinedIcon)}
-          </div>
-        </div>
-        <div className="mail__message">
-          <p>{selectedMail?.description}</p>
-        </div>
-      </div>
-    </div>
   );
 };
 

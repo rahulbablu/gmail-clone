@@ -12,16 +12,16 @@ import { Avatar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
+import { signOut } from "firebase/auth";
 
 const Header = () => {
   const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
 
-  const signOut = () => {
-    auth.signOut().then(() => {
-      dispatch(logout())
-    });
+  const signOutApp = () => {
+    signOut(auth);
+    dispatch(logout());
   };
 
   return (
@@ -56,11 +56,12 @@ const Header = () => {
           <AppsIcon />
         </IconButton>
 
-        <Avatar className="header__rightAvatar"
+        <Avatar
+          className="header__rightAvatar"
           src={user?.photoUrl}
           alt="profile pic"
           sx={{ width: 34, height: 34 }}
-          onClick={signOut}
+          onClick={signOutApp}
         />
       </div>
     </div>

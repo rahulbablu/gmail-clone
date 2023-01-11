@@ -11,6 +11,8 @@ import { selectSendMessageIsOpen } from "./features/mailSlice";
 import { login, selectUser } from "./features/userSlice";
 import Login from "./Login";
 import { auth } from "./firebase";
+import SentEmail from "./SentEmail";
+import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
   const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
@@ -19,17 +21,20 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
+    onAuthStateChanged(auth,(user) => {
       if (user) {
         //if user logged in
-        dispatch(login({
-          displayName: user.displayName,
-          email: user.email,
-          photoUrl: user.photoURL
-        }))
+        dispatch(
+          login({
+            uid: user.uid,
+            displayName: user.displayName,
+            email: user.email,
+            photoUrl: user.photoURL,
+          })
+        );
       }
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <Router>
@@ -41,8 +46,9 @@ function App() {
           <div className="app__body">
             <Sidebar />
             <Routes>
-              <Route path="/mail" element={<Mail />} />
               <Route path="/" element={<EmailList />} />
+              <Route path="/mail" element={<Mail />} />
+              <Route path="/sent" element={<SentEmail />} />
             </Routes>
           </div>
           {sendMessageIsOpen && <SendMail />}

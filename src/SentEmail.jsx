@@ -19,10 +19,12 @@ import EmailRow from "./EmailRow";
 import { db } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { inboxCount } from "./features/mailSlice";
+import { sentCount } from "./features/mailSlice";
 
-const EmailList = () => {
-  const [emails, setEmails] = useState([]);
+const SentEmail = () => {
+  const [sentemails, setSentEmails] = useState([]);
+
+  const dispatch = useDispatch();
 
   const currentUser = useSelector((s) => s.user.user);
 
@@ -30,12 +32,12 @@ const EmailList = () => {
     const handleMails = async () => {
       const q = query(
         collection(db, "emails"),
-        where("to", "==", currentUser.email)
+        where("from", "==", currentUser.email)
       );
 
       const fetchedMails = await getDocs(q);
       const mails = fetchedMails.docs.map((doc) => doc.data());
-      setEmails(mails);
+      setSentEmails(mails);
     };
 
     return () => {
@@ -80,11 +82,11 @@ const EmailList = () => {
         <Section Icon={CommentOutlinedIcon} title="Forums" color="purple" />
       </div>
       <div className="emailList__list">
-        {emails.map((item) => (
+        {sentemails.map((item) => (
           <EmailRow
             key={item.timestamp.seconds}
             id={item.timestamp.seconds}
-            title={item.from}
+            title={item.to}
             subject={item.subject}
             description={item.message}
             time={new Date(item.timestamp?.seconds * 1000).toUTCString()}
@@ -95,4 +97,4 @@ const EmailList = () => {
   );
 };
 
-export default EmailList;
+export default SentEmail;
