@@ -41,7 +41,7 @@ const EmailList = () => {
     return () => {
       handleMails();
     };
-  }, [currentUser]);
+  }, [currentUser,emails]);
 
   return (
     <div className="emailList">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Sidebar.css";
 import { Button } from "@mui/material";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
@@ -14,7 +14,7 @@ import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDown
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 
 import { IconButton } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { openSendMessage } from "./features/mailSlice";
 import { Link } from "react-router-dom";
 

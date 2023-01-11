@@ -13,7 +13,7 @@ const SendMail = () => {
   const dispatch = useDispatch();
 
   const currentUser = useSelector(s => s.user.user)
-  console.log(currentUser)
+
   const {
     register,
     handleSubmit,

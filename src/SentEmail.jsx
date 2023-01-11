@@ -43,7 +43,7 @@ const SentEmail = () => {
     return () => {
       handleMails();
     };
-  }, [currentUser]);
+  }, [currentUser,sentemails]);
 
   return (
     <div className="emailList">
