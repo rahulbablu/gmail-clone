@@ -91,7 +91,7 @@ const SentEmail = () => {
             title={item.to}
             subject={item.subject}
             description={item.message}
-            time={new Date(item.timestamp?.seconds * 1000).toUTCString()}
+            // time={new Date(item.timestamp?.seconds * 1000).toUTCString()}
           />
         ))}
       </div>

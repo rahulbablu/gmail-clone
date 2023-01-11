@@ -87,7 +87,7 @@ const EmailList = () => {
             title={item.from}
             subject={item.subject}
             description={item.message}
-            time={new Date(item.timestamp?.seconds * 1000).toUTCString()}
+            // time={new Date(item.timestamp?.seconds * 1000).toUTCString()}
           />
         ))}
       </div>
