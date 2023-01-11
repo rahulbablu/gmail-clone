@@ -24,6 +24,8 @@ import { sentCount } from "./features/mailSlice";
 const SentEmail = () => {
   const [sentemails, setSentEmails] = useState([]);
 
+  const sendBox = useSelector((s) => s.mail.sendMessageIsOpen);
+
   const dispatch = useDispatch();
 
   const currentUser = useSelector((s) => s.user.user);
@@ -43,7 +45,7 @@ const SentEmail = () => {
     return () => {
       handleMails();
     };
-  }, [currentUser,sentemails]);
+  }, [currentUser,sendBox]);
 
   return (
     <div className="emailList">
@@ -82,10 +84,10 @@ const SentEmail = () => {
         <Section Icon={CommentOutlinedIcon} title="Forums" color="purple" />
       </div>
       <div className="emailList__list">
-        {sentemails.map((item) => (
+        {sentemails.map((item, i) => (
           <EmailRow
-            key={item.timestamp.seconds}
-            id={item.timestamp.seconds}
+            key={i}
+            id={i}
             title={item.to}
             subject={item.subject}
             description={item.message}
